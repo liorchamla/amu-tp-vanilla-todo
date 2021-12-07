@@ -132,9 +132,106 @@ TODO_ITEMS.forEach((item) => addTodo(item));
 <main>
     <h2>La liste des tâches</h2>
     <ul></ul>
-+    <form>
-+        <input type="text" name="todo-text" placeholder="Ajouter une tâche" />
-+        <button>Ajouter</button>
-+    </form>
+    <form>
+        <input type="text" name="todo-text" placeholder="Ajouter une tâche" />
+        <button>Ajouter</button>
+    </form>
 </main>
+```
+
+```js
+// src/app.js
+// On souhaite réagir à chaque fois que le formulaire est soumis
+document.querySelector("form").addEventListener("submit", (e) => {
+  // On souhaite aussi empêcher le rechargement de la page
+  e.preventDefault();
+
+  // On récupère l'input
+  const input = document.querySelector('input[name="todo-text"]');
+
+  // On créé une nouvelle tâche avec pour text la valeur tapée dans l'input
+  const item = {
+    id: Date.now(),
+    text: input.value,
+    done: false,
+  };
+  
+  // On appelle la fonction créée plus tôt qui ajoutera la tâche dans le <ul>
+  addTodo(item);
+
+  // On vide l'input et replace le curseur dedans
+  input.value = "";
+  input.focus();
+});
+```
+
+# Appels HTTP vers une API REST
+
+Expliquer le principe de Supabase (et outils apparentés tels que Firebase et autres)
+
+Guider vers la création d'un compte Supabase et expliciter la création d'une table SQL qui contiendra les données
+
+Linker vers la doc de l'API REST Supabase
+
+Nous ne souhaitons plus utiliser le tableau JS TODO_ITEMS, nous pouvons donc supprimer toute référence à celui ci
+
+```js
+// src/app.js
+const SUPABASE_URL = "https://IDENTIFIANT_SUPABASE.supabase.co/rest/v1/todos";
+const SUPABASE_API_KEY = "CLE_API_SUPABASE";
+
+// Lorsque les éléments du DOM sont tous connus
+document.addEventListener("DOMContentLoaded", () => {
+  // Appel HTTP vers Supabase
+  fetch(SUPABASE_URL, {
+    headers: {
+      apiKey: SUPABASE_API_KEY,
+    },
+  })
+    .then((response) => response.json())
+    .then((items) => {
+      items.forEach((item) => addTodo(item));
+    });
+});
+```
+Expliciter le système des promesses JS (rapidement)
+
+```diff
+// On souhaite réagir à chaque fois que le formulaire est soumis
+document.querySelector("form").addEventListener("submit", (e) => {
+    // On souhaite aussi empêcher le rechargement de la page
+    e.preventDefault();
+
+    // On récupère l'input
+    const input = document.querySelector('input[name="todo-text"]');
+
+    // On créé une nouvelle tâche avec pour text la valeur tapée dans l'input
+    const item = {
+-        id: Date.now(),
+        text: input.value,
+        done: false,
+    };
+
+    // On appelle la fonction créée plus tôt qui ajoutera la tâche dans le <ul>
+-    addTodo(item);
++    fetch(SUPABASE_URL, {
++        method: "POST",
++        body: JSON.stringify(item),
++        headers: {
++            "Content-Type": "application/json",
++            apiKey: SUPABASE_API_KEY,
++            Prefer: "return=representation",
++        },
++    })
++    .then((response) => response.json())
++    .then((items) => {
++      addTodo(items[0]);
++      input.value = "";
++      input.focus();
++    });
+
+-    // On vide l'input et replace le curseur dedans
+-   input.value = "";
+-   input.focus();
+});
 ```
