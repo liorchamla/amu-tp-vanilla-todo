@@ -103,7 +103,7 @@ const addTodo = (item) => {
     `
         <li>
             <label>
-                <input type="checkbox" id="${item.id}" ${item.done ? "checked" : ""} /> 
+                <input type="checkbox" id="todo-${item.id}" ${item.done ? "checked" : ""} /> 
                 ${item.text}
             </label>
         </li>
@@ -183,7 +183,7 @@ const SUPABASE_API_KEY = "CLE_API_SUPABASE";
 // Lorsque les éléments du DOM sont tous connus
 document.addEventListener("DOMContentLoaded", () => {
   // Appel HTTP vers Supabase
-  fetch(SUPABASE_URL, {
+  fetch(`${SUPABASE_URL}?order=created_at`, {
     headers: {
       apiKey: SUPABASE_API_KEY,
     },
@@ -212,7 +212,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
         done: false,
     };
 
-    // On appelle la fonction créée plus tôt qui ajoutera la tâche dans le <ul>
+-    // On appelle la fonction créée plus tôt qui ajoutera la tâche dans le <ul>
 -    addTodo(item);
 +    fetch(SUPABASE_URL, {
 +        method: "POST",
@@ -233,5 +233,156 @@ document.querySelector("form").addEventListener("submit", (e) => {
 -    // On vide l'input et replace le curseur dedans
 -   input.value = "";
 -   input.focus();
+});
+```
+
+# Passer les éléments à "fait" ou "pas fait"
+
+```js
+// src/app.js
+// Nous souhaitons intervenir lors d'un click sur une checkbox
+const onClickCheckbox = (e) => {
+    // Nous récupérons l'identifiant de la checkbox (ressemble à "todo-1" ou "todo-23" ...)
+  const inputId = e.target.id; 
+  // Nous en déduisons l'identifiant de la tâche dans Supabase (ne récupérant que le nombre)
+  const id = +inputId.split("-").pop();  
+  // On découvre si la checkbox était déjà cochée ou pas
+  const isDone = e.target.checked;
+
+  // Nous empêchons le comportement par défaut de l'événement (cocher ou décocher)
+  e.preventDefault();
+
+  fetch(`${SUPABASE_URL}?id=eq.${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      apiKey: SUPABASE_API_KEY,
+      Prefer: "return=representation",
+    },
+    body: JSON.stringify({ done: isDone }),
+  }).then(() => {
+      // Lorsque le serveur a pris en compte la demande et nous a répond
+      // Nous cochons (ou décochons) la case
+    e.target.checked = isDone;
+  });
+};
+```
+
+```js
+ // src/app.js à la fin de la fonction addTodo()
+ document
+    // Nous sélectionnons la checkbox fraichement ajoutée au DOM
+    .querySelector("input#todo-" + item.id)
+    // Et nous lions la fonction onClickCheckbox au click 
+    .addEventListener("click", onClickCheckbox);
+```
+
+# Refactoring des appels HTTP
+Expliquer la problématique du couplage, et même du bordel dans notre code
+Et expliciter la notion de modules en JS
+
+```js
+// src/api.js
+const SUPABASE_URL = "https://IDENTIFIANT_SUPABASE.supabase.co/rest/v1/todos";
+const SUPABASE_API_KEY = "CLE_API_SUPABASE";
+
+export const loadTodoItemsFromApi = () => {
+  return fetch(`${SUPABASE_URL}?order=created_at`, {
+    headers: {
+      apiKey: SUPABASE_API_KEY,
+    },
+  }).then((response) => response.json());
+};
+
+export const toggleComplete = (id, done) => {
+  return fetch(`${SUPABASE_URL}?id=eq.${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      apiKey: SUPABASE_API_KEY,
+      Prefer: "return=representation",
+    },
+    body: JSON.stringify({ done: done }),
+  });
+};
+
+export const saveTodoItemToApi = (item) => {
+  return fetch(SUPABASE_URL, {
+    method: "POST",
+    body: JSON.stringify(item),
+    headers: {
+      "Content-Type": "application/json",
+      apiKey: SUPABASE_API_KEY,
+      Prefer: "return=representation",
+    },
+  }).then((response) => response.json());
+};
+```
+
+Expliquer la notion d'export et d'import
+
+```js
+// src/app.js
+import {
+  loadTodoItemsFromApi,
+  toggleComplete,
+  saveTodoItemToApi,
+} from "./api.js";
+```
+
+```js
+// src/app.js
+document.addEventListener("DOMContentLoaded", () => {
+  loadTodoItemsFromApi().then((items) => {
+    items.forEach((item) => addTodo(item));
+  });
+});
+
+const onClickCheckbox = (e) => {
+  const inputId = e.target.id;
+  const id = +inputId.split("-").pop();
+  const isDone = e.target.checked;
+
+  e.preventDefault();
+
+  toggleComplete(id, isDone).then(() => {
+    e.target.checked = isDone;
+  });
+};
+
+const addTodo = (item) => {
+  const container = document.querySelector("ul");
+  container.insertAdjacentHTML(
+    "beforeend",
+    `
+        <li>
+            <label>
+                <input type="checkbox" id="todo-${item.id}" ${
+      item.done ? "checked" : ""
+    } /> 
+                ${item.text}
+            </label>
+        </li>
+    `
+  );
+  document
+    .querySelector("input#todo-" + item.id)
+    .addEventListener("click", onClickCheckbox);
+};
+
+document.querySelector("form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const input = document.querySelector('input[name="todo-text"]');
+  const item = {
+    text: input.value,
+    done: false,
+  };
+  
+  saveTodoItemToApi(item).then((items) => {
+    addTodo(items[0]);
+
+    input.value = "";
+    input.focus();
+  });
 });
 ```
