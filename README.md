@@ -51,6 +51,21 @@ module.exports = {
   },
 ```
 
+# Vérification de l'outillage et des liens
+```js
+// src/app.js
+console.log("Tout fonctionne");
+```
+
+```html
+<script src="dist/app.js"></script>
+```
+
+`npm run dev`
+
+S'assurer qu'on a bien "Tout fonctionne" dans la console
+
+
 # Afficher la liste des items
 
 Expliquer le but de l'exercice
@@ -67,9 +82,11 @@ const TODO_ITEMS = [
 
 2. Mettre en place un conteneur dans le HTML
 ```html
-<h2>La liste des tâches</h2>
-<!-- Le ul sera le conteneur pour nos tâches -->
-<ul></ul>
+<main>
+    <h2>La liste des tâches</h2>
+    <!-- Le ul sera le conteneur pour nos tâches -->
+    <ul></ul>
+</main>
 ```
 
 3. Afficher les items du tableau dans le HTML
@@ -86,9 +103,7 @@ const addTodo = (item) => {
     `
         <li>
             <label>
-                <input type="checkbox" id="${item.id}" ${
-      item.done ? "checked" : ""
-    } /> 
+                <input type="checkbox" id="${item.id}" ${item.done ? "checked" : ""} /> 
                 ${item.text}
             </label>
         </li>
@@ -99,4 +114,27 @@ const addTodo = (item) => {
 // Pour chaque élément du tableau TODO_ITEMS, on appelle la fonction addTodo en fournissant
 // l'item
 TODO_ITEMS.forEach((item) => addTodo(item));
+```
+
+# L'avantage du watch avec Wepback
+
+```json
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "serve": "live-server",
+    "watch": "webpack --mode development --watch"
+  },
+```
+
+# Ajout d'une nouvelle tâche
+```html
+<main>
+    <h2>La liste des tâches</h2>
+    <ul></ul>
++    <form>
++        <input type="text" name="todo-text" placeholder="Ajouter une tâche" />
++        <button>Ajouter</button>
++    </form>
+</main>
 ```
