@@ -8,10 +8,10 @@ Le Javasciprt va donc projeter des données dans l'interface HTML, alors que le 
 
 ## Sommaire
   * [But de l'exercice](#but-de-l-exercice)
-  * [Modéliser une liste de tâche dans le JS](#mod-liser-une-liste-de-t-che-dans-le-js)
+  * [Modéliser une liste de tâche dans le JS](#modéliser-une-liste-de-tâche-dans-le-js)
   * [Mettre en place un conteneur dans le HTML](#mettre-en-place-un-conteneur-dans-le-html)
   * [Afficher les items du tableau dans le HTML](#afficher-les-items-du-tableau-dans-le-html)
-  * [Vérifier la bonne marche de notre application](#v-rifier-la-bonne-marche-de-notre-application)
+  * [Vérifier la bonne marche de notre application](#vérifier-la-bonne-marche-de-notre-application)
   * [L'avantage du watch avec Wepback](#l-avantage-du-watch-avec-wepback)
 
 ## But de l'exercice 

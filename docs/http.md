@@ -1,16 +1,58 @@
-
 # Appels HTTP vers une API REST
 
-Expliquer le principe de Supabase (et outils apparentés tels que Firebase et autres)
+Pour l'instant, les données de notre applications sont **particulièrement éphémères** ! En effet, à chaque réactualisation du navigateur, les tâches reviennent au départ. Il existe plusieurs possibilités pour pallier à ce problème :
 
-Guider vers la création d'un compte Supabase et expliciter la création d'une table SQL qui contiendra les données
+1. Le stockage local : on peut tout à fait décider de stocker les données de notre application sur le navigateur via le *LocalStorage* (dont la durée de vie est illimitée sauf intervention de l'utilisateur) ou le *SessionStorage* (dont la durée de vie est relativement courte) ;
+2. Le stockage distant : on peut décider au contraire de stocker les données à distance, de telle sorte que la durée de vie du stockage soit réellement illimitée et **surtout que les données restent accessibles y compris sur d'autres navigateurs** ;
 
-Linker vers la doc de l'API REST Supabase
 
-Nous ne souhaitons plus utiliser le tableau JS TODO_ITEMS, nous pouvons donc supprimer toute référence à celui ci
+**Notez que Javascript n'a aucun moyen de se connecter à une base de données, qu'elle soit distante ou locale !**
+
+Ce que Javascript sait par contre très bien faire, c'est appeler un serveur web distant via des requêtes HTTP.
+
+Il faut donc créer une application web backend qui aura accès à la base de données, et que l'on pourra appeler depuis notre javascript via des requêtes HTTP (le concept même d'API ;-)).
+
+## But de l'exercice :
+Nous allons créer une base de données PostgreSQL sur un serveur distant avec une table qui permettra de stocker les données de nos tâches. 
+
+Pour ce faire nous utiliserons un service sur mesure : Supabase (une alternative aux services Firebase de Google).
+
+Cette solution nous permet non seulement de créer des bases de données, mais intègre aussi par défaut une API qui permet d'intéroger ces bases de données via des requêtes HTTP.
+
+Nous allons donc :
+1. Créer un compte sur le service Supabase (nécessite un compte GitHub)
+2. Créer un projet et une base de données adéquate
+3. Connecter notre application front à Supabase afin de stocker les données à distance
+
+## Créer un projet sur Supabase :
+[Rendez vous sur le service Supabase](https://supabase.com) et cliquez sur ***"Start your project"*** afin de vous y connecter.
+
+Une fois authentifié via GitHub, vous pourrez créer un projet en cliquant sur ***New Project***.
+
+La création du projet peut durer quelques minutes et vous pourrez ensuite aller sur le ***Table Editor*** de votre base de données et cliquer sur ***New Table*** afin de créer une table que vous appellerez ***todos*** et dont les champs seront :
+
+| Nom du champ | Type | Defaut |
+| --- | --- | --- |
+| id | Laissez tel quel
+| created_at | Laissez tel quel
+| text | varchar | null |
+| done | boolean | false |
+
+Vous pouvez enfin insérer des lignes selon vos choix afin d'avoir déjà des données d'exemple.
+
+## Comprendre comment fonctionne l'API de Supabase
+
+Avant de continuer, vous devrez tout de même essayer de comprendre l'API en vous rendant dans la documentation (icône de fichier sur la gauche) et en sélectionnant ***Bash*** sur l'onglet de droite pour véritablement voir les requêtes HTTP qui sont acceptables ainsi que les options.
+
+## Afficher les tâches (Requêtes HTTP et Promesses)
+
+Nous ne souhaitons plus utiliser le tableau `TODO_ITEMS`, nous pouvons donc supprimer toute référence à celui ci.
+
+A la place, nous comptons récupérer les tâches via une requête HTTP et les afficher :
 
 ```js
 // src/app.js
+
 const SUPABASE_URL = "https://IDENTIFIANT_SUPABASE.supabase.co/rest/v1/todos";
 const SUPABASE_API_KEY = "CLE_API_SUPABASE";
 
@@ -28,7 +70,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 ```
-Expliciter le système des promesses JS (rapidement)
+
+Comme vous pouvez vous en douter, une requête HTTP n'est pas instantannée, et vous ne pouvez donc pas compter sur le résultat immédiatement dans votre code.
+
+**C'est pourquoi Javascript nous fourni un système de code asynchrone : les Promesses**
+
+### Système de Promesses
+Une Promesse Javascript est un objet dont le but est de lancer un travail sur un *thread* différent du *thread* principal. En d'autres termes, le travail sera fait en tâche de fond et ne bloquera pas le code principal qui continuera d'avancer quoiqu'il en soit.
+
+Bien sur, la Promesse vous donne la possibilité de décider quoi faire lorsque le travail lancé en tâche de fond sera terminé. On peut rattacher à une Promesse un comportement à exécuter en fin de travail grâce à la méthode `.then()` à qui nous devons confier une fonction.
+
+La Promesse exécutera cette fonction en lui passant en paramètre le résultat de son travail.
+
+### Enchaînement de comportements
+Parfois, on a envie non pas d'attacher un unique comportement à la fin d'un Promesse, mais bien un enchaînement de comportements qui permettront de raffiner les données.
+
+On peut donc enchaîner les `.then()` après une Promesse. Le premier de la chaîne recevra le résultat du travail de la Promesse, le deuxième récupèrera la valeur retournée par le `.then()` d'avant, et ainsi de suite.
+
+### La fonction fetch() de Javascript
+
+Ici nous utilisons la fonction `fetch()` de Javascript qui permet d'envoyer une requête HTTP en tâche de fond. La fonction renvoie donc une promesse qui contient ce comportement et qui nous permet de décider quoi faire lorsque la requête HTTP aura été exécutée et que la réponse HTTP du seveur sera disponible.
+
+Vous remarquez que nous n'avons pas rattaché un unique comportement pour la fin de la Promesse `fetch()`. Nous avons :
+1. Un premier `.then()` qui pourra travailler sur la réponse http et qui retournera le JSON contenu dans la réponse ;
+2. Un deuxième `.then()` qui recevra la valeur retournée par le premier `.then()` (à savoir le JSON retourné par le serveur) et qui fera un nouveau traitement là dessus ;
+
+## Ajouter une tâche dans la base de données
+On a vu comment récupérer les tâches de la base de données et les projeter depuis notre Javascript jusqu'à l'interface HTML, il faut maintenant réussir aussi à ajouter une tâche dans la base de données afin que ses informations persistent.
+
+On va donc pouvoir modifier la fonction qui gère la soumission du formulaire afin de ne plus donner un identifiant à la tâche (puisque la base de données s'en chargera automatiquement) mais aussi faire la requête HTTP avant que la tâche n'apparaisse dans l'interface :
 
 ```diff
 // On souhaite réagir à chaque fois que le formulaire est soumis
@@ -70,7 +140,17 @@ document.querySelector("form").addEventListener("submit", (e) => {
 });
 ```
 
-# Passer les éléments à "fait" ou "pas fait"
+Vous remarquez qu'on attend le retour de la requête HTTP avant de toucher à l'interface. On s'assure par là qu'on n'ajoute pas une tâche dans l'interface alors que par ailleurs on aurait eu un soucis avec l'API et la base de données (on appelle cela *l'approche pessimiste*).
+
+## Passer les éléments à "fait" ou "pas fait"
+
+On veut désormais aller un peu plus loin, de telle sorte qu'on permettre à l'utilisateur de décider si une tâche a été faite ou pas.
+
+Pour cela on souhaite avoir deux choses :
+1. Une fonction qui décidera quoi faire lorsqu'on click sur une checkbox ;
+2. Le rattachement de cette fonction à chaque checkbox qui sera générée automatiquement ;
+
+Commençons par créer une nouvelle fonction `onClickCheckbox` qui sera plus tard appelée à chaque click sur une checkbox, et qui sera chargée de faire la requête HTTP vers l'API afin de prévenir la base de données que le statut de la tâche a changé :
 
 ```js
 // src/app.js
@@ -102,6 +182,8 @@ const onClickCheckbox = (e) => {
 };
 ```
 
+Ensuite, il nous faudra modifier la fonction `addTodo(item)` qui créé le visuel d'une tâche dans la liste afin qu'à chaque nouvelle tâche ajoutée dans l'interface, on rattache bien à la checkbox la fonction `onClickCheckbox` :
+
 ```js
  // src/app.js à la fin de la fonction addTodo()
  document
@@ -111,7 +193,10 @@ const onClickCheckbox = (e) => {
     .addEventListener("click", onClickCheckbox);
 ```
 
-# Refactoring des appels HTTP
+Et voilà, normalement, vous devriez désormais pouvoir afficher les tâches de la base de données, y ajouter une tâche et même modifier les tâches afin de faire varier leur statut !
+
+## Refactoring des appels HTTP
+
 Expliquer la problématique du couplage, et même du bordel dans notre code
 Et expliciter la notion de modules en JS
 

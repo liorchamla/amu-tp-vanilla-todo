@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Ajout d'une nouvelle tâche
 
 Maintenant qu'on sait afficher une liste dynamique dont **les données sont projetées du javascript vers le html**, il faut permettre à l'utilisateur d'ajouter une tâche depuis l'interface.
@@ -6,7 +5,7 @@ Maintenant qu'on sait afficher une liste dynamique dont **les données sont proj
 ## Sommaire :
 * [But de l'exercice](#but-de-l-exercice)
 * [Afficher un formulaire dans l'interface (HTML)](#afficher-un-formulaire-dans-l-interface--html-)
-* [Ecouter un événement du HTML dans le Javascript](#ecouter-un--v-nement-du-html-dans-le-javascript)
+* [Ecouter un événement du HTML dans le Javascript](#ecouter-un-événement-du-html-dans-le-javascript)
 
 ## But de l'exercice 
 Retenez toujours le flux de données dans une application front (expliqué dans le chapitre précédent). Le Javascript gère les données et les projète dans le HTML, le HTML fait appel à des traitements disponibles dans le Javascript. 
@@ -20,10 +19,6 @@ Retenez toujours le flux de données dans une application front (expliqué dans 
 
 Modifions le fichier *index.html* afin de disposer un formulaire :
 
-=======
-
-# Ajout d'une nouvelle tâche
->>>>>>> fad20cfe4171c91e50b6327e5e3887d1da9e70ef
 ```html
 <main>
     <h2>La liste des tâches</h2>
@@ -35,7 +30,6 @@ Modifions le fichier *index.html* afin de disposer un formulaire :
 </main>
 ```
 
-<<<<<<< HEAD
 Nous avons déjà une fonction `addTodo(item)` dans le Javascript qui est responsable de projeter une tâche dans la liste, ce qu'il nous faut maintenant, c'est intercepter la soumission du formulaire afin de gérer l'ajout d'une nouvelle tâche :
 
 ## Ecouter un événement du HTML dans le Javascript
@@ -43,10 +37,6 @@ Nous avons déjà une fonction `addTodo(item)` dans le Javascript qui est respon
 ```js
 // src/app.js
 
-=======
-```js
-// src/app.js
->>>>>>> fad20cfe4171c91e50b6327e5e3887d1da9e70ef
 // On souhaite réagir à chaque fois que le formulaire est soumis
 document.querySelector("form").addEventListener("submit", (e) => {
   // On souhaite aussi empêcher le rechargement de la page
@@ -69,12 +59,8 @@ document.querySelector("form").addEventListener("submit", (e) => {
   input.value = "";
   input.focus();
 });
-<<<<<<< HEAD
 ```
 
 Faites un essai dans votre navigateur, en théorie, tout devrait fonctionner :-)
 
 [Revenir au sommaire](../README.md) ou [Passer à la suite : Appels HTTP et API REST](http.md)
-=======
-```
->>>>>>> fad20cfe4171c91e50b6327e5e3887d1da9e70ef
