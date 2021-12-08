@@ -13,8 +13,7 @@ Le Javasciprt va donc projeter des données dans l'interface HTML, alors que le 
   * [Afficher les items du tableau dans le HTML](#afficher-les-items-du-tableau-dans-le-html)
   * [Vérifier la bonne marche de notre application](#vérifier-la-bonne-marche-de-notre-application)
   * [L'avantage du watch avec Wepback](#l-avantage-du-watch-avec-wepback)
-  
-* [Ce que vous avez appris](#ce-que-vous-avez-appris--)
+  * [Ce que vous avez appris](#ce-que-vous-avez-appris--)
 
 ## But de l'exercice 
 Nous souhaitons afficher de façon dynamique une liste de tâches au sein de la page. En suivant le schéma explicité ci-dessus, nous comprenons :
