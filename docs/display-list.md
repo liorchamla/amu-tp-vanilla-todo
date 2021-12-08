@@ -13,6 +13,8 @@ Le Javasciprt va donc projeter des données dans l'interface HTML, alors que le 
   * [Afficher les items du tableau dans le HTML](#afficher-les-items-du-tableau-dans-le-html)
   * [Vérifier la bonne marche de notre application](#vérifier-la-bonne-marche-de-notre-application)
   * [L'avantage du watch avec Wepback](#l-avantage-du-watch-avec-wepback)
+  
+* [Ce que vous avez appris](#ce-que-vous-avez-appris--)
 
 ## But de l'exercice 
 Nous souhaitons afficher de façon dynamique une liste de tâches au sein de la page. En suivant le schéma explicité ci-dessus, nous comprenons :
@@ -108,5 +110,9 @@ C'est pourquoi Webpack intègre une possibilité de "watching" (surveillance) de
 ```
 
 En lançans la commande `npm run watch` vous verrez que Webpack va se lancer et ne plus vous rendre la main : il attend que des changements soient fait dans votre dossier *src/* pour se relancer automatiquement.
+
+# Ce que vous avez appris :
+* Le flux des données dans une application front : les données et comportements sont gérés dans le Javascript. Les données sont projetés par Javascript dans l'interface (HTML), alors que l'interface peut déclencher des traitements du Javascript ;
+* Utiliser l'option `--watch` de Webpack afin de ne pas avoir à relancer sans cesse le bundling de nos fichiers sources
 
 [Revenir au sommaire](../README.md) ou [Passer à la suite : Ajouter une tâche](add-item.md)

@@ -8,6 +8,7 @@ Comme tout langage de programmation, Javascript (même ça lui a manqué pendant
 - [But de l'exercice :](#but-de-l-exercice--)
 - [Créer un fichier api.js qui contiendra les appels HTTP](#créer-un-fichier-apijs-qui-contiendra-les-appels-http)
 - [Utiliser les fonctions refactorisées dans notre code principal](#utiliser-les-fonctions-refactorisées-dans-notre-code-principal)
+- [Ce que vous avez appris](#ce-que-vous-avez-appris--)
 
 ## But de l'exercice :
 Nous allons commencer à refactoriser notre code de telle sorte qu'il gagne en clarté. Et pour ce faire nous utiliserons le système de modules de Javascript afin de répartir différents codes dans différents fichiers.
@@ -191,5 +192,11 @@ document.querySelector("form").addEventListener("submit", (e) => {
 });
 ```
 Et voilà, normalement, tout devrait fonctionner correctement !
+
+# Ce que vous avez appris :
+* Créer différents modules (fichiers JS) afin de répartir correctement vos fonctions et vos responsabilités ;
+* Exporter des fonctions d'un module afin qu'elles soient utilisables dans un autre module ;
+* Importer des fonctions dans un module à partir d'un autre module ;
+* Centraliser certaines fonctions afin de pouvoir les réutiliser et les faire évoluer plus facilement ;
 
 [Revenir au sommaire](../README.md) ou [Passer à la suite : Routing et affichage dynamique](routing.md)

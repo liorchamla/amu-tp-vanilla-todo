@@ -9,6 +9,7 @@ Comme pour tous les autres langages de programmation, le gestionnaire de dépend
   * [Installer le module bundler Webpack](#installer-le-module-bundler-webpack)
   * [Lancer l'application dans le navigateur](#lancer-l-application-dans-le-navigateur)
   * [Vérification de l'outillage et des liens](#vérification-de-l-outillage-et-des-liens)
+  * [Ce que vous avez appris ](#ce-que-vous-avez-appris--)
 
 ## Initialiser la gestion de dépendances dans le projet
 Pour pouvoir bénéficier des forces de NPM dans votre projet, vous devez tout d'abord créer le manifeste qui permettra de le configurer : le fichier package.json
@@ -109,5 +110,11 @@ Puis modifiez le fichier *index.html* afin d'ajouter à la toute fin du `<body>`
 Notez que pour l'instant, le fichier dist/app.js ne contient absolument pas le code qu'on a ajouté à src/app.js, pour cela il faudrait appeler Webpack afin qu'il prenne en compte le changement : `npm run dev`
 
 Vous pouvez maintenant aller sur votre navigateur et ouvrir la console de développement afin de vous assurer que vous obtenez bien le message **"Tout fonctionne"**.
+
+# Ce que vous avez appris :
+* Utiliser NPM afin de gérer les dépendances (librairies ou outils) nécessaires à votre projet ;
+* Utiliser NPM afin de configurer des tâches que vous pourrez lancer ;
+* Utiliser Webpack pour "bundler" vos fichiers JS en un fichier unique (et bien plus) ;
+* Utiliser live-server afin de créer un petit serveur web et d'afficher votre application dans le navigateur ;
 
 [Revenir au sommaire](../README.md) ou [Passer à la suite : Afficher la liste des tâches](display-list.md)

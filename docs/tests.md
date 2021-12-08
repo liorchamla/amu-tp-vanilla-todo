@@ -7,9 +7,18 @@ Comme tout langage de programmation, Javascript possède des utilitaires et fram
 
 ## Sommaire :
 
+* [But de l'exercice](#but-de-l-exercice)
+* [Installation de Jest](#installation-de-jest)
+* [Premier test avec Jest](#premier-test-avec-jest)
+* [Le problème du HTML dans nos tests](#le-problème-du-html-dans-nos-tests)
+* [Aller plus loin et tester notre application](#aller-plus-loin-et-tester-notre-application)
+* [Ce que vous avez appris](#ce-que-vous-avez-appris--)
+
 ## But de l'exercice 
 
 Nous allons découvrir ici les tests unitaires en Javascript avec le framework de test **Jest**.
+
+**Ici, les notions importantes sur lesquelles se concentrer sont l'écriture de tests, la simulation des intéractions avec le DOM ainsi que l'utilisation de fonctions simulées (mocks)**
 
 ## Installation de Jest
 Encore une fois, NPM va être notre allié le plus précieux ! Il va nous permettre d'installer un nouvel outil ainsi que des plugins nécessaires pour écrire nos tests unitaires !
@@ -19,11 +28,11 @@ npm install --save-dev jest babel-jest @babel/core @babel/preset-env @types/jest
 ```
 
 Ce qu'on installe ici c'est :
-1. Le framework de tests Jest
-2. Un plugin babel-jest qui permettra à Jest de demander à Babel de compiler le code JS avant de lancer les tests. En effet, Jest ne supporte pas la gestion des modules telle que nous les avons utilisé
-3. L'outil Babel lui-même du coup
-4. Un plugin pour Babel qui lui permet de savoir dans quel format nous souhaitons traduire notre code JS
-5. Enfin, une librairie de types spécifique à Jest qui permettra simplement à notre éditeur de code de connaître les fonctions et méthodes disponibles dans Jest afin d'obtenir une belle autocomplétion :-)
+1. Le framework de tests Jest ;
+2. Un plugin babel-jest qui permettra à Jest de demander à Babel de compiler le code JS avant de lancer les tests. En effet, Jest ne supporte pas la gestion des modules telle que nous les avons utilisé ;
+3. L'outil Babel lui-même du coup ;
+4. Un plugin pour Babel qui lui permet de savoir dans quel format nous souhaitons traduire notre code JS ;
+5. Enfin, une librairie de types spécifique à Jest qui permettra simplement à notre éditeur de code de connaître les fonctions et méthodes disponibles dans Jest afin d'obtenir une belle autocomplétion :-) ;
 
 Comme nous devons utiliser Babel (du fait que Jest ne gère pas les modules tels que nous les utilisons), il nous faut configurer babel :
 
@@ -65,6 +74,11 @@ it("should work fine", () => {
 Lançons notre tâche de test pour voir la sortie de Jest : `npm test`
 
 Si tout va bien, on peut continuer et écrire un véritable test !
+
+## Le problème du HTML dans nos tests 
+Comme vous le constatez, Jest ne se lance pas dans notre navigateur mais dans notre terminal. Dans ce contexte, comment faire pour tester des intéractions ou des projections dans le DOM ?
+
+Pour répondre à ce challenge, Jest intègre une librairie tierce appelée **JSDOM** qui permet de simuler le DOM d'un navigateur en Javascript et donc utilisable au sein de nos tests !
 
 ## Aller plus loin et tester notre application
 Lorsque l'on test du HTML et de l'Asynchrone, il faut être capable d'attendre que les tâches asynchrones soient faites, surtout si le résultat de ces tâches a un impact sur le HTML.
@@ -220,3 +234,15 @@ it("should display details", () => {
     expect(displayTodoDetails).toBeCalledTimes(3);
 });
 ```
+
+Voilà ! On a testé deux fonctionnalités phares de notre application ainsi que le routeur !
+
+A vous d'explorer le monde des tests unitaires avec Jest pour en apprendre plus !
+
+N'hésitez pas à aller plus loin pour découvrir les tests E2E (End To End) avec Cypress ou Protractor ;-)
+
+# Ce que vous avez appris :
+* Installer Jest et le configurer afin qu'il tienne compte du système de modules ;
+* Créer un test unitaire (y compris impliquant des intéractions avec le DOM) ;
+* Créer des mocks de fonctions afin de les piloter et d'empêcher de réels appels ;
+

@@ -13,10 +13,15 @@ et ouvrez le dossier dans votre éditeur de code favoris !
 
 Une fois que le projet est mis en place, vous pouvez tout simplement suivre le TP étape par étape :
 
-1. [Installation des outils de développement](docs/setup.md)
-2. [Afficher une liste dynamique](docs/display-list.md)
-3. [Ajout d'une nouvelle tâche](docs/add-item.md)
-4. [Appels HTTP et API REST](docs/http.md)
-5. [Routing et affichage dynamique](docs/routing.md)
-6. [Tester son code avec Jest](docs/tests.md)
+* [Installation des outils de développement](docs/setup.md)
+  * [Initialiser la gestion de dépendances dans le projet](docs/setup.md#initialiser-la-gestion-de-dépendances-dans-le-projet)
+  * [Installer le module bundler Webpack](docs/setup.md#installer-le-module-bundler-webpack)
+  * [Lancer l'application dans le navigateur](docs/setup.md#lancer-l-application-dans-le-navigateur)
+  * [Vérification de l'outillage et des liens](docs/setup.md#vérification-de-l-outillage-et-des-liens)
+  * [Ce que vous avez appris ](#ce-que-vous-avez-appris--)
+* [Afficher une liste dynamique](docs/display-list.md)
+* [Ajout d'une nouvelle tâche](docs/add-item.md)
+* [Appels HTTP et API REST](docs/http.md)
+* [Routing et affichage dynamique](docs/routing.md)
+* [Tester son code avec Jest](docs/tests.md)
 

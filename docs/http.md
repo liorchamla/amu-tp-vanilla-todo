@@ -22,6 +22,7 @@ Il faut donc créer une application web backend qui aura accès à la base de do
     + [La fonction fetch() de Javascript](#la-fonction-fetch---de-javascript)
 * [Ajouter une tâche dans la base de données](#ajouter-une-tâche-dans-la-base-de-données)
 * [Passer les éléments à "fait" ou "pas fait"](#passer-les-éléments-à--fait--ou--pas-fait-)
+* [Ce que vous avez appris](#ce-que-vous-avez-appris--)
 
 ## But de l'exercice :
 Nous allons créer une base de données PostgreSQL sur un serveur distant avec une table qui permettra de stocker les données de nos tâches. 
@@ -206,5 +207,10 @@ Ensuite, il nous faudra modifier la fonction `addTodo(item)` qui créé le visue
 
 Et voilà, normalement, vous devriez désormais pouvoir afficher les tâches de la base de données, y ajouter une tâche et même modifier les tâches afin de faire varier leur statut !
 
+# Ce que vous avez appris :
+* La notion d'asynchronicité en Javascript avec les Promesses, qui permettent de lancer un travail en tâche de fond tout en précisant quoi faire lorsque ce travail sera terminé ;
+* L'enchaînement de `.then()` à la suite d'une promesse afin d'enchaîner les travaux à faire une fois que la tâche de fond sera terminée ;
+* Découverte du service Supabase qui vous permet en quelques secondes de créer une base de données distante accessible par une API (mais pas que ;-)) ;
+* Découverte de la fonction `fetch()` en Javascript permettant d'envoyer des requêtes HTTP ;
 
 [Revenir au sommaire](../README.md) ou [Passer à la suite : Refactoring et modules](routing.md)

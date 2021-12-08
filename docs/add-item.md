@@ -6,6 +6,7 @@ Maintenant qu'on sait afficher une liste dynamique dont **les données sont proj
 * [But de l'exercice](#but-de-l-exercice)
 * [Afficher un formulaire dans l'interface (HTML)](#afficher-un-formulaire-dans-l-interface--html-)
 * [Ecouter un événement du HTML dans le Javascript](#ecouter-un-événement-du-html-dans-le-javascript)
+* [Ce que vous avez appris](#ce-que-vous-avez-appris--)
 
 ## But de l'exercice 
 Retenez toujours le flux de données dans une application front (expliqué dans le chapitre précédent). Le Javascript gère les données et les projète dans le HTML, le HTML fait appel à des traitements disponibles dans le Javascript. 
@@ -62,5 +63,9 @@ document.querySelector("form").addEventListener("submit", (e) => {
 ```
 
 Faites un essai dans votre navigateur, en théorie, tout devrait fonctionner :-)
+
+# Ce que vous avez appris :
+* Ecouter un événement qui a lieu dans l'interface afin de l'intercepter au sein du Javascript et de lancer un traitement précis ;
+* Annuler le comportement par défaut d'un événement donné grâce à la méthode `preventDefault()` de l'événement ;
 
 [Revenir au sommaire](../README.md) ou [Passer à la suite : Appels HTTP et API REST](http.md)

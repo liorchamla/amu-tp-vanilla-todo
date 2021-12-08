@@ -15,6 +15,7 @@ Dans une Single Page Application, on chercher à faire croire au visiteur qu'il 
 * [Refactoring pour aller plus loin](#refactoring-pour-aller-plus-loin)
 * [Gestion dynamique des URLs](#gestion-dynamique-des-urls)
 * [Page de détails d'une tâche](#page-de-détails-d-une-tâche)
+* [Ce que vous avez appris](#ce-que-vous-avez-appris--)
 
 ## But de l'exercice :
 Nous souhaitons avoir une deuxième page dans notre application qui sera chargée d'afficher le détail d'une tâche donnée. Nous avons donc deux affichages possibles :
@@ -351,5 +352,11 @@ A ce stade, notre routeur fonctionne comme on le souhaitait :
 * Il analye l'URL et appelle le comportement correspondant
 * Les comportements affichent les contenus au sein de la balise `<main>` qui devient ce qu'on appelle un **outlet** (un élément qui affiche le contenu correspondant à l'URL)
 
+# Ce que vous avez appris :
+* Notion de routing : l'association d'URLs et de comportements ;
+* Agir dynamiquement sur l'URL dans le navigateur grâce à `window.history.pushState()` ;
+* Réagir à un changement de l'historique de navigation en écoutant l'événement `popstate` ;
+* Dispatcher par vous même un événément `popstate` ;
+* Notion d' **outlet** : le container dans lequel le routeur affichera le contenu correspondant à une URL ;
 
 [Revenir au sommaire](../README.md) ou [Passer à la suite : Tester son code avec Jest](tests.md)
