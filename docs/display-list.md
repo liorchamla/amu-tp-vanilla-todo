@@ -108,7 +108,7 @@ C'est pourquoi Webpack intègre une possibilité de "watching" (surveillance) de
   },
 ```
 
-En lançans la commande `npm run watch` vous verrez que Webpack va se lancer et ne plus vous rendre la main : il attend que des changements soient fait dans votre dossier *src/* pour se relancer automatiquement.
+En lançant la commande `npm run watch` vous verrez que Webpack va se lancer et ne plus vous rendre la main : il attend que des changements soient fait dans votre dossier *src/* pour se relancer automatiquement.
 
 # Ce que vous avez appris :
 * Le flux des données dans une application front : les données et comportements sont gérés dans le Javascript. Les données sont projetés par Javascript dans l'interface (HTML), alors que l'interface peut déclencher des traitements du Javascript ;
