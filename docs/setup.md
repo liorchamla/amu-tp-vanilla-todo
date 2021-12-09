@@ -89,7 +89,7 @@ Et encore une fois, afin de permettre aux développeurs de lancer facilement ce 
 
 Ce que nous décrivons ici, c'est qu'en lançant la commande `npm run serve` nous allons lancer un serveur web local qui servira toujours le fichier *index.html* quelque soit la requête HTTP qu'il recevra.
 
-**Attention :** comprenez bien que toute les URLs que vous taperez sur cette application seront toujours redirigées vers index.html, ce qui ne serait pas le cas sur un serveur web classique tel que Apache ou NGinx, du moins pas sans configuration particulière ! Ce sera donc à prendre en compte lors du déploiement de votre application, si vous décidez par exemple de déployer sur un serveur Apache, il vous faudra configurer le même comportement.
+**Attention :** comprenez bien que toutes les URLs que vous taperez sur cette application seront toujours redirigées vers index.html, ce qui ne serait pas le cas sur un serveur web classique tel que Apache ou NGinx, du moins pas sans configuration particulière ! Ce sera donc à prendre en compte lors du déploiement de votre application, si vous décidez par exemple de déployer sur un serveur Apache, il vous faudra configurer le même comportement.
 
 ## Vérification de l'outillage et des liens
 
