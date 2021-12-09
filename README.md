@@ -2,12 +2,23 @@
 
 Dans ce TP, vous allez créer une Single Page Application (SPA) en Vanilla JS dans le but de découvrir différentes notions telles que les affichages dynamiques, la gestion des modules et du bundling, les appels HTTP et les promesses, le routage et bien sur les tests unitaires qui assureront la qualité et la non régression de vos codes.
 
-## Mettre en place le projet
+## Mettre en place le projet en local
 Clonez ce dépôt où bon vous semble :
 ```bash
 git clone https://github.com/liorchamla/amu-tp-vanilla-todo.git
 ```
-et ouvrez le dossier dans votre éditeur de code favoris !
+Ouvrez le dossier dans votre éditeur de code favoris !
+
+## Travailler directement sur le navigateur
+Plutôt que de cloner le dépôt, vous pouvez aussi travailler directement en ligne via Gitpod.
+
+Pour cela il vous faudra *forker* le dépôt sur votre propre compte (bouton *Fork* en haut à droite de GitHub). Une fois sur la page du fork (la copie de ce dépôt sur votre propre compte), vous pourrez simplement ajouter `gitpod.io/#` juste devant l'URL du dépôt.
+
+Par exemple, le lien suivant ouvrira **ce dépôt** dans Gitpod : https://gitpod.io/#https://github.com/liorchamla/amu-tp-vanilla-todo
+
+**Attention : le travail ne sera pas sauvegardé d'une session de travail à l'autre, vous devrez systématiquement commit et push vos modifications si vous espérez les retrouver ensuite !**
+
+
 
 ## Attention au départ !
 
