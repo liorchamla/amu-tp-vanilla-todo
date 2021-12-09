@@ -32,7 +32,7 @@ Une fois que le projet est mis en place, vous pouvez tout simplement suivre le T
   * [Ce que vous avez appris ](docs/setup.md#ce-que-vous-avez-appris--)
 * [**Afficher une liste dynamique**](docs/display-list.md)
   * [But de l'exercice](docs/display-list.md#but-de-l-exercice)
-  * [Modéliser une liste de tâche dans le JS](docs/display-list.md#modéliser-une-liste-de-tâche-dans-le-js)
+  * [Modéliser une liste de tâches dans le JS](docs/display-list.md#modéliser-une-liste-de-tâches-dans-le-js)
   * [Mettre en place un conteneur dans le HTML](docs/display-list.md#mettre-en-place-un-conteneur-dans-le-html)
   * [Afficher les items du tableau dans le HTML](docs/display-list.md#afficher-les-items-du-tableau-dans-le-html)
   * [Vérifier la bonne marche de notre application](docs/display-list.md#vérifier-la-bonne-marche-de-notre-application)

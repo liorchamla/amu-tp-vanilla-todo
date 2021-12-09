@@ -4,11 +4,11 @@ Dans une application front, les différentes responsabilités suivent un schéma
 1. Les données ainsi que les traitements sont gérées par le Javascript
 2. L'interface est gérée via le HTML
 
-Le Javasciprt va donc projeter des données dans l'interface HTML, alors que le HTML pourra appeler le Javascript lors des diverses intéractions de l'utilisateur avec la page.
+Le Javascript va donc projeter des données dans l'interface HTML, alors que le HTML pourra appeler le Javascript lors des diverses intéractions de l'utilisateur avec la page.
 
 ## Sommaire
   * [But de l'exercice](#but-de-l-exercice)
-  * [Modéliser une liste de tâche dans le JS](#modéliser-une-liste-de-tâche-dans-le-js)
+  * [Modéliser une liste de tâches dans le JS](#modéliser-une-liste-de-tâches-dans-le-js)
   * [Mettre en place un conteneur dans le HTML](#mettre-en-place-un-conteneur-dans-le-html)
   * [Afficher les items du tableau dans le HTML](#afficher-les-items-du-tableau-dans-le-html)
   * [Vérifier la bonne marche de notre application](#vérifier-la-bonne-marche-de-notre-application)
@@ -24,7 +24,7 @@ Nous souhaitons afficher de façon dynamique une liste de tâches au sein de la 
 
 **Ici, on tentera vraiment de comprendre que l'on peut et comment on peut projeter du contenu dans l'interface HTML depuis le code Javascript**
 
-## Modéliser une liste de tâche dans le JS
+## Modéliser une liste de tâches dans le JS
 
 Créons tout d'abord la liste des tâches (en dur pour l'instant) au sein de notre fichier src/app.js
 
@@ -111,7 +111,7 @@ C'est pourquoi Webpack intègre une possibilité de "watching" (surveillance) de
 En lançant la commande `npm run watch` vous verrez que Webpack va se lancer et ne plus vous rendre la main : il attend que des changements soient fait dans votre dossier *src/* pour se relancer automatiquement.
 
 # Ce que vous avez appris :
-* Le flux des données dans une application front : les données et comportements sont gérés dans le Javascript. Les données sont projetés par Javascript dans l'interface (HTML), alors que l'interface peut déclencher des traitements du Javascript ;
+* Le flux des données dans une application front : les données et comportements sont gérés dans le Javascript. Les données sont projetées par Javascript dans l'interface (HTML), alors que l'interface peut déclencher des traitements du Javascript ;
 * Utiliser l'option `--watch` de Webpack afin de ne pas avoir à relancer sans cesse le bundling de nos fichiers sources
 
 [Revenir au sommaire](../README.md) ou [Passer à la suite : Ajouter une tâche](add-item.md)

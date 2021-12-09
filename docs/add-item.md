@@ -35,13 +35,21 @@ Nous avons déjà une fonction `addTodo(item)` dans le Javascript qui est respon
 
 ## Ecouter un événement du HTML dans le Javascript
 
+Nous souhaitons que le Javascript intervienne lors de la soumission du formulaire afin d'ajouter une nouvelle tâche dans la liste. Javascript prévoit expressément ce genre de comportements : on peut observer des éléments du HTML qui nous intéressent et réagir à des événements qui les impactent (click sur un bouton, soumission d'un formulaire, etc).
+
+Pour ce faire, on va rattacher une fonction (qu'on appelle un Event Handler ou Gestionnaire d'événement) à un événement. Cette fonction pourra recevoir un objet représentant les détails de l'événement qui s'est produit.
+
+**Attention : ** Le comportement par défaut d'une soumission de formulaire est d'envoyer une requête HTTP, ce qui rechargera le navigateur, réinitilisant le Javascript et la mémoire (ce qu'on ne souhaite surtout pas dans une Single Page Application).
+
+Il est possible, lorsque l'on gère un événement, d'annuler son comportement par défaut en appelant la méthode `preventDefault()` sur l'objet représentant l'événement.
+
 ```js
 // src/app.js
 
 // On souhaite réagir à chaque fois que le formulaire est soumis
-document.querySelector("form").addEventListener("submit", (e) => {
+document.querySelector("form").addEventListener("submit", (event) => {
   // On souhaite aussi empêcher le rechargement de la page
-  e.preventDefault();
+  event.preventDefault();
 
   // On récupère l'input
   const input = document.querySelector('input[name="todo-text"]');

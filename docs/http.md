@@ -8,7 +8,7 @@ Pour l'instant, les données de notre applications sont **particulièrement éph
 
 **Notez que Javascript n'a aucun moyen de se connecter à une base de données, qu'elle soit distante ou locale !**
 
-Ce que Javascript sait par contre très bien faire, c'est appeler un serveur web distant via des requêtes HTTP.
+Par contre, ce que Javascript sait très bien faire, c'est appeler un serveur web distant via des requêtes HTTP.
 
 Il faut donc créer une application web backend qui aura accès à la base de données, et que l'on pourra appeler depuis notre javascript via des requêtes HTTP (le concept même d'API ;-)).
 
@@ -48,7 +48,7 @@ La création du projet peut durer quelques minutes et vous pourrez ensuite aller
 | id | Laissez tel quel
 | created_at | Laissez tel quel
 | text | varchar | null |
-| done | boolean | false |
+| done | bool | false |
 
 Vous pouvez enfin insérer des lignes selon vos choix afin d'avoir déjà des données d'exemple.
 
@@ -56,9 +56,13 @@ Vous pouvez enfin insérer des lignes selon vos choix afin d'avoir déjà des do
 
 Avant de continuer, vous devrez tout de même essayer de comprendre l'API en vous rendant dans la documentation (icône de fichier sur la gauche) et en sélectionnant ***Bash*** sur l'onglet de droite pour véritablement voir les requêtes HTTP qui sont acceptables ainsi que les options.
 
+Une fois dans la documentation de l'API, vous pourrez même sélectionner le menu "***todos***" dans la barre de gauche et voir les requêtes HTTP spécifiques à la table *todos*.
+
 ## Afficher les tâches (Requêtes HTTP et Promesses)
 
 Nous ne souhaitons plus utiliser le tableau `TODO_ITEMS`, nous pouvons donc supprimer toute référence à celui ci.
+
+Vous allez avoir besoin de votre identifiant de projet ainsi que de la clé de sécurité. Vous trouverez ces informations dans la partie *Authentication* de la documentation de l'API.
 
 A la place, nous comptons récupérer les tâches via une requête HTTP et les afficher :
 
