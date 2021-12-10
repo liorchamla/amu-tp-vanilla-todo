@@ -92,9 +92,9 @@ Comme vous pouvez vous en douter, une requête HTTP n'est pas instantannée, et 
 **C'est pourquoi Javascript nous fourni un système de code asynchrone : les Promesses**
 
 ### Système de Promesses
-Une Promesse Javascript est un objet dont le but est de lancer un travail sur un *thread* différent du *thread* principal. En d'autres termes, le travail sera fait en tâche de fond et ne bloquera pas le code principal qui continuera d'avancer quoiqu'il en soit.
+Une Promesse Javascript est un objet dont le but est de lancer un travail puis de vous permettre de décider quoi faire du résultat de ce travail.
 
-Bien sur, la Promesse vous donne la possibilité de décider quoi faire lorsque le travail lancé en tâche de fond sera terminé. On peut rattacher à une Promesse un comportement à exécuter en fin de travail grâce à la méthode `.then()` à qui nous devons confier une fonction.
+On peut rattacher à une Promesse un comportement à exécuter en fin de travail grâce à la méthode `.then()` à qui nous devons confier une fonction.
 
 La Promesse exécutera cette fonction en lui passant en paramètre le résultat de son travail.
 
@@ -103,9 +103,9 @@ Parfois, on a envie non pas d'attacher un unique comportement à la fin d'un Pro
 
 On peut donc enchaîner les `.then()` après une Promesse. Le premier de la chaîne recevra le résultat du travail de la Promesse, le deuxième récupèrera la valeur retournée par le `.then()` d'avant, et ainsi de suite.
 
-### La fonction fetch() de Javascript
+### La fonction fetch()
 
-Ici nous utilisons la fonction `fetch()` de Javascript qui permet d'envoyer une requête HTTP en tâche de fond. La fonction renvoie donc une promesse qui contient ce comportement et qui nous permet de décider quoi faire lorsque la requête HTTP aura été exécutée et que la réponse HTTP du seveur sera disponible.
+Ici nous utilisons la fonction `fetch()` qui permet d'envoyer une requête HTTP en tâche de fond. La fonction renvoie donc une promesse qui contient ce comportement et qui nous permet de décider quoi faire lorsque la requête HTTP aura été exécutée et que la réponse HTTP du seveur sera disponible.
 
 Vous remarquez que nous n'avons pas rattaché un unique comportement pour la fin de la Promesse `fetch()`. Nous avons :
 1. Un premier `.then()` qui pourra travailler sur la réponse http et qui retournera le JSON contenu dans la réponse ;
@@ -212,9 +212,9 @@ Ensuite, il nous faudra modifier la fonction `addTodo(item)` qui créé le visue
 Et voilà, normalement, vous devriez désormais pouvoir afficher les tâches de la base de données, y ajouter une tâche et même modifier les tâches afin de faire varier leur statut !
 
 # Ce que vous avez appris :
-* La notion d'asynchronicité en Javascript avec les Promesses, qui permettent de lancer un travail en tâche de fond tout en précisant quoi faire lorsque ce travail sera terminé ;
-* L'enchaînement de `.then()` à la suite d'une promesse afin d'enchaîner les travaux à faire une fois que la tâche de fond sera terminée ;
+* La notion d'asynchronicité en Javascript avec les Promesses, qui permettent de lancer un travail tout en précisant quoi faire lorsque ce travail sera terminé ;
+* L'enchaînement de `.then()` à la suite d'une promesse afin d'enchaîner les travaux en raffinant les données ;
 * Découverte du service Supabase qui vous permet en quelques secondes de créer une base de données distante accessible par une API (mais pas que ;-)) ;
-* Découverte de la fonction `fetch()` en Javascript permettant d'envoyer des requêtes HTTP ;
+* Découverte de la fonction `fetch()` permettant d'envoyer des requêtes HTTP ;
 
 [Revenir au sommaire](../README.md) ou [Passer à la suite : Refactoring et modules](routing.md)
