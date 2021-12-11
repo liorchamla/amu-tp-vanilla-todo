@@ -13,16 +13,16 @@ Par contre, ce que Javascript sait très bien faire, c'est appeler un serveur we
 Il faut donc créer une application web backend qui aura accès à la base de données, et que l'on pourra appeler depuis notre javascript via des requêtes HTTP (le concept même d'API ;-)).
 
 ## Sommaire :
-* [But de l'exercice :](#but-de-l-exercice--)
-* [Créer un projet sur Supabase :](#créer-un-projet-sur-supabase--)
-* [Comprendre comment fonctionne l'API de Supabase](#comprendre-comment-fonctionne-l-api-de-supabase)
+* [But de l'exercice :](#but-de-lexercice-)
+* [Créer un projet sur Supabase :](#créer-un-projet-sur-supabase-)
+* [Comprendre comment fonctionne l'API de Supabase](#comprendre-comment-fonctionne-lapi-de-supabase)
 * [Afficher les tâches (Requêtes HTTP et Promesses)](#afficher-les-tâches--requêtes-http-et-promesses-)
     + [Système de Promesses](#système-de-promesses)
     + [Enchaînement de comportements](#enchaînement-de-comportements)
-    + [La fonction fetch() de Javascript](#la-fonction-fetch---de-javascript)
+    + [La fonction fetch() de Javascript](#la-fonction-fetch-)
 * [Ajouter une tâche dans la base de données](#ajouter-une-tâche-dans-la-base-de-données)
-* [Passer les éléments à "fait" ou "pas fait"](#passer-les-éléments-à--fait--ou--pas-fait-)
-* [Ce que vous avez appris](#ce-que-vous-avez-appris--)
+* [Passer les éléments à "fait" ou "pas fait"](#passer-les-éléments-à-fait-ou-pas-fait)
+* [Ce que vous avez appris](#ce-que-vous-avez-appris-)
 
 ## But de l'exercice :
 Nous allons créer une base de données PostgreSQL sur un serveur distant avec une table qui permettra de stocker les données de nos tâches. 
