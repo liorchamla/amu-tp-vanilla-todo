@@ -1,0 +1,30 @@
+{
+  "name": "amu-tp-vanilla-todo",
+  "version": "1.0.0",
+  "description": "Dans ce TP, vous allez créer une Single Page Application (SPA) en Vanilla JS dans le but de découvrir différentes notions telles que les affichages dynamiques, la gestion des modules et du bundling, les appels HTTP et les promesses, le routage et bien sur les tests unitaires qui assureront la qualité et la non régression de vos codes.",
+  "main": "jest.config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "serve": "live-server --entry-file=./index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MH1000/amu-tp-vanilla-todo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MH1000/amu-tp-vanilla-todo/issues"
+  },
+  "homepage": "https://github.com/MH1000/amu-tp-vanilla-todo#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
