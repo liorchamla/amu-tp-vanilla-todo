@@ -75,6 +75,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
+```js
+// src/api.js
+
+const SUPABASE_URL = "https://XXXXXX.supabase.co/rest/v1/todos";
+
+const SUPABASE_API_KEY = 'XXXXXX.XXXXXX.XXXXXX-XXXXXX';
+
+export const loadTodoItemsFromApi = () =>
+    // Appel HTTP vers Supabase
+    fetch(`${SUPABASE_URL}?order=created_at`, {
+        headers: {
+            apiKey: SUPABASE_API_KEY
+        }
+    }).then((response) => response.json());
+```
+
 ### Premier test : la page d'accueil
 Si vous allez sur votre navigateur sur l'URL `/` vous devriez voir en console le message correspondant à la liste des tâches.
 
@@ -141,7 +157,7 @@ const onClickCheckbox = (e) => {
 
 Désormais, c'est le routeur qui devient responsable des appels de fonctions :
 
-```js
+```diff
 // src/routing.js
 import { displayTodoList } from "./ui";
 
@@ -161,7 +177,8 @@ export const applyRouting = (url) => {
         return;
     }
     // Dans tous les autres cas, on présente la liste des tâches
-    displayTodoList();
+-    console.log("J'affiche la liste des tâches");
++    displayTodoList();
 }
 ```
 
@@ -218,7 +235,7 @@ On utilisera la fonction `window.history.pushState()` pour ajouter une URL à l'
  * Gestion du click sur un lien
  * @param {MouseEvent} e 
  */
-export const onClickLink = (e) => {
+const onClickLink = (e) => {
     // On empêche le comportement par défaut de l'événement
     // qui reviendrait à réellement naviguer vers l'URL
     e.preventDefault();
@@ -264,8 +281,8 @@ Vous l'aurez compris, l'événement `popstate` est déclenché à chaque fois qu
 
 Néanmoins, cela ne sera pas suffisant, car l'appel à `window.history.pushState()` n'émet pas automatiquement ce fameux événement `popstate` que l'on attend ! On peut néanmoins le faire nous-même :
 
-```js
-// src/ui.js
+```diff
+// src/routing.js
 
 /**
  * Gestion du click sur un lien
