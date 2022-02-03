@@ -235,7 +235,7 @@ On utilisera la fonction `window.history.pushState()` pour ajouter une URL à l'
  * Gestion du click sur un lien
  * @param {MouseEvent} e 
  */
-const onClickLink = (e) => {
+export const onClickLink = (e) => {
     // On empêche le comportement par défaut de l'événement
     // qui reviendrait à réellement naviguer vers l'URL
     e.preventDefault();
