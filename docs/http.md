@@ -217,4 +217,4 @@ Et voilà, normalement, vous devriez désormais pouvoir afficher les tâches de 
 * Découverte du service Supabase qui vous permet en quelques secondes de créer une base de données distante accessible par une API (mais pas que ;-)) ;
 * Découverte de la fonction `fetch()` permettant d'envoyer des requêtes HTTP ;
 
-[Revenir au sommaire](../README.md) ou [Passer à la suite : Refactoring et modules](routing.md)
+[Revenir au sommaire](../README.md) ou [Passer à la suite : Refactoring et modules](refactoring.md)
