@@ -24,7 +24,7 @@ Nous allons découvrir ici les tests unitaires en Javascript avec le framework d
 Encore une fois, NPM va être notre allié le plus précieux ! Il va nous permettre d'installer un nouvel outil ainsi que des plugins nécessaires pour écrire nos tests unitaires !
 
 ```bash
-npm install --save-dev jest babel-jest @babel/core @babel/preset-env @types/jest
+npm install --save-dev jest jest-environment-jsdom babel-jest @babel/core @babel/preset-env @types/jest
 ```
 
 Ce qu'on installe ici c'est :
